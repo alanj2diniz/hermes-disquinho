@@ -214,11 +214,11 @@ VOLUME [ "/opt/data" ]
 #   docker run <image> chat -q "hi"     → /init main-wrapper.sh chat -q hi
 #   docker run <image> sleep infinity   → /init main-wrapper.sh sleep infinity
 #   docker run <image> --tui            → /init main-wrapper.sh --tui
-#
+EXPOSE 8000
 # main-wrapper.sh handles arg routing (bare-exec vs. hermes
 # subcommand vs. no-args), drops to the hermes user via s6-setuidgid,
 # and exec's the final program so its exit code becomes the container
 # exit code. Without the wrapper-as-ENTRYPOINT, leading-dash args
 # like `--version` would be intercepted by /init's POSIX shell.
-ENTRYPOINT [ "/init", "/opt/hermes/docker/main-wrapper.sh" ]
-CMD [ "gateway" ]
+ENTRYPOINT [ "/bin/sh", "-c" ]
+CMD [ "sleep infinity" ]
