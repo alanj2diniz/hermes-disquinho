@@ -220,5 +220,5 @@ EXPOSE 8000
 # and exec's the final program so its exit code becomes the container
 # exit code. Without the wrapper-as-ENTRYPOINT, leading-dash args
 # like `--version` would be intercepted by /init's POSIX shell.
-ENTRYPOINT [ "/bin/sh", "-c" ]
+ENTRYPOINT ["sleep", "999999"]
 CMD [ "sleep infinity" ]
