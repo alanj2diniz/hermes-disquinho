@@ -82,11 +82,13 @@ class ResponsesApiTransport(ProviderTransport):
 
         # Resolve reasoning effort
         reasoning_effort = "medium"
-        reasoning_enabled = True
+        reasoning_enabled = False
         reasoning_config = params.get("reasoning_config")
         if reasoning_config and isinstance(reasoning_config, dict):
             if reasoning_config.get("enabled") is False:
                 reasoning_enabled = False
+            elif reasoning_config.get("enabled") is True:
+                reasoning_enabled = True
             elif reasoning_config.get("effort"):
                 reasoning_effort = reasoning_config["effort"]
 
