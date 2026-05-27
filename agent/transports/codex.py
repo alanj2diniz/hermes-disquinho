@@ -138,7 +138,7 @@ class ResponsesApiTransport(ProviderTransport):
                 kwargs["reasoning"] = {"effort": reasoning_effort, "summary": "auto"}
                 kwargs["include"] = ["reasoning.encrypted_content"]
         elif not is_github_responses and not is_xai_responses:
-            kwargs["include"] = []
+            pass  # omit include for models that don't support it (e.g. gpt-4o)
 
         request_overrides = params.get("request_overrides")
         if request_overrides:
